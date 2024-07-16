@@ -11,7 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _phoneController = TextEditingController(text: AppConstants.phone);
+  final TextEditingController _phoneController =
+      TextEditingController(text: AppConstants.phone);
   bool onTap = false;
   final _formKey = GlobalKey<FormState>();
   FocusNode focusNode = FocusNode();
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Text("UPSC News",
               style: GoogleFonts.anton(
                   letterSpacing: 1,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w200,
                   color: Colors.white)),
         ),
       ),
@@ -63,8 +64,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Text(
                 "Login with your phone number",
-                style:
-                    GoogleFonts.rubik(fontSize: 18, fontWeight: FontWeight.w400),
+                style: GoogleFonts.rubik(
+                    fontSize: 18, fontWeight: FontWeight.w400),
               ),
               const SizedBox(
                 height: 15,
@@ -89,8 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value!.isEmpty) return "Enter your phone number";
-                    if (value.length != 10) return "Enter 10-digit phone number";
-          
+                    if (value.length != 10)
+                      return "Enter 10-digit phone number";
+
                     return null;
                   },
                   onChanged: (value) {
@@ -152,7 +154,8 @@ class _LoginPageState extends State<LoginPage> {
                         : Text(
                             "Continue",
                             style: GoogleFonts.rubik(
-                                color: Colors.white, fontWeight: FontWeight.w600),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
                           ),
                   ),
                 ),
@@ -166,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: GoogleFonts.rubik(),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height*0.2,
+                height: MediaQuery.of(context).size.height * 0.2,
               ),
               Center(
                 child: Text(
