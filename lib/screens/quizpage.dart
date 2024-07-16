@@ -10,7 +10,6 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  final dynamic _selected = -1;
   @override
   Widget build(BuildContext context) {
     return Container(
