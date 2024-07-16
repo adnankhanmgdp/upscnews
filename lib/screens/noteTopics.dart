@@ -9,47 +9,19 @@ class NoteTopic extends StatefulWidget {
 }
 
 class _NoteTopicState extends State<NoteTopic> {
-  List<Map<String, String>> topics = [
-    {
-      "topic": "Indus Valley Civilization",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
-    },
-    {
-      "topic": "Later Vedic Period",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
-    },
-    {
-      "topic": "Mahajanapadas",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
-    },
-    {
-      "topic": "Mauryan Empire",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
-    },
-    {
-      "topic": "Medieval India",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
-    },
-    {
-      "topic": "Mughal Architecture",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
-    },
+  List<Map<String, dynamic>> topics = [
+    {"topic": "Indus Valley Civilization", "source": "Drishti IAS", "notes": 8},
+    {"topic": "Later Vedic Period", "source": "Drishti IAS", "notes": 8},
+    {"topic": "Mahajanapadas", "source": "Drishti IAS", "notes": 8},
+    {"topic": "Mauryan Empire", "source": "Drishti IAS", "notes": 8},
+    {"topic": "Medieval India", "source": "Drishti IAS", "notes": 8},
+    {"topic": "Mughal Architecture", "source": "Drishti IAS", "notes": 8},
     {
       "topic": "Regional states during Gupta Era",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
+      "source": "Drishti IAS",
+      "notes": 8
     },
-    {
-      "topic": "Sangam Age",
-      "image":
-          "https://m.media-amazon.com/images/I/71eCLdAkkFL._AC_UF1000,1000_QL80_.jpg",
-    },
+    {"topic": "Sangam Age", "source": "Drishti IAS", "notes": 8},
   ];
   @override
   Widget build(BuildContext context) {
@@ -95,51 +67,34 @@ class _NoteTopicState extends State<NoteTopic> {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(5),
-          child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.88, crossAxisCount: 2),
-              itemCount: topics.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Card(
-                      color: Colors.white,
-                      elevation: 2,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.width * 0.4,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10)),
-                              child: Image(
-                                image: NetworkImage(topics[index]['image']!),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 48,
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: Center(
-                              child: Text(
-                                overflow: TextOverflow.fade,
-                                textAlign: TextAlign.center,
-                                topics[index]['topic']!,
-                                style: GoogleFonts.rubik(fontSize: 16),
-                              ),
-                            ),
-                          )
-                        ],
-                      )),
-                );
-              }),
+        body: ListView.builder(
+          shrinkWrap: true,
+          itemCount: topics.length,
+          itemBuilder: (context, index) {
+            return Container(
+              decoration: const BoxDecoration(
+                  border:
+                      Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+              child: ListTile(
+                title: Text(topics[index]['topic']!),
+                subtitle: Text(topics[index]['source']!),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "${topics[index]['notes']!} notes",
+                      style: GoogleFonts.rubik(fontSize: 14),
+                    ),
+                    const Icon(
+                      Icons.keyboard_arrow_right,
+                      size: 25,
+                    ),
+                  ],
+                ),
+                onTap: () {},
+              ),
+            );
+          },
         ));
   }
 }

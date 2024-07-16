@@ -12,65 +12,119 @@ class NotesPage extends StatefulWidget {
 
 class _NotesPageState extends State<NotesPage> {
   List<Map<String, String>> subjects = [
-    {"subject": 'Science', "source": "Drishti IAS", "notes": "8"},
+    {
+      "subject": 'Science',
+      "image": "science.png",
+    },
     {
       "subject": 'Mordern Indian History',
-      "source": "Drishti IAS",
-      "notes": "8"
+      "image": "History.png",
     },
-    {"subject": 'Physical Geography', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Indian Constitution', "source": "Drishti IAS", "notes": "8"},
+    {
+      "subject": 'Physical Geography',
+      "image": "geography.png",
+    },
+    {
+      "subject": 'Indian Constitution',
+      "image": "Constitution.png",
+    },
     {
       "subject": 'International Relations',
-      "source": "Drishti IAS",
-      "notes": "8"
+      "image": "International Relations.png",
     },
-    {"subject": 'Agriculture', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Economics', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Philosophy', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Public Administration', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Sociology', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Mathematics', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Law', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Anthropology', "source": "Drishti IAS", "notes": "8"},
-    {"subject": 'Enviromental Studies', "source": "Drishti IAS", "notes": "8"}
+    {
+      "subject": 'Agriculture',
+      "image": "Agriculture.png",
+    },
+    {
+      "subject": 'Economics',
+      "image": "Economics.png",
+    },
+    {
+      "subject": 'Philosophy',
+      "image": "Philosophy.png",
+    },
+    {
+      "subject": 'Public Administration',
+      "image": "Public Administration.png",
+    },
+    {
+      "subject": 'Sociology',
+      "image": "Sociology.png",
+    },
+    {
+      "subject": 'Mathematics',
+      "image": "Mathematics.png",
+    },
+    {
+      "subject": 'Law',
+      "image": "Law.png",
+    },
+    {
+      "subject": 'Anthropology',
+      "image": "Anthropology.png",
+    },
+    {
+      "subject": 'Enviromental Studies',
+      "image": "Enviromental Studies.png",
+    }
   ];
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: subjects.length,
-      itemBuilder: (context, index) {
-        return Container(
-          decoration: const BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-          child: ListTile(
-            title: Text(subjects[index]['subject']!),
-            subtitle: Text(subjects[index]['source']!),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "${subjects[index]['notes']!} notes",
-                  style: GoogleFonts.rubik(fontSize: 14),
-                ),
-                const Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 25,
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NoteTopic(),
-                  ));
-            },
-          ),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 0.88, crossAxisCount: 2),
+          itemCount: subjects.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: GestureDetector(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NoteTopic(),
+                    )),
+                child: Card(
+                    color: Colors.white,
+                    elevation: 2,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width * 0.4,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10)),
+                            child: Image(
+                              image: AssetImage(
+                                  "assets/images/${subjects[index]['image']!}"),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 48,
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: Center(
+                            child: Text(
+                              overflow: TextOverflow.fade,
+                              textAlign: TextAlign.center,
+                              subjects[index]['subject']!,
+                              style: GoogleFonts.rubik(fontSize: 16),
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
+              ),
+            );
+          }),
     );
   }
 }
